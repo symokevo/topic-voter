@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  full_name: MyString
+  username: MyString
+  role: MyString
+  email: MyString
+  company: one
+  approved: false
+
+two:
+  full_name: MyString
+  username: MyString
+  role: MyString
+  email: MyString
+  company: two
+  approved: false
