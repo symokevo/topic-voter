@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_19_092254) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_20_084944) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_19_092254) do
     t.string "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "target_meeting_date"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_topics_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -35,5 +45,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_19_092254) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "topic_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["topic_id"], name: "index_votes_on_topic_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
+  end
+
+  add_foreign_key "topics", "users"
   add_foreign_key "users", "companies"
+  add_foreign_key "votes", "topics"
+  add_foreign_key "votes", "users"
 end
