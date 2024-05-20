@@ -12,7 +12,6 @@ class TopicsController < ApplicationController
 
   def create
     @topic = current_user.topics.build(topic_params)
-    @topic.votes.build(user: current_user) # Add the owner's vote on creation
     if @topic.save
       redirect_to topics_path, notice: "Topic created successfully."
     else

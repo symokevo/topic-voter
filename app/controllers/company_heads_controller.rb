@@ -1,5 +1,5 @@
 class CompanyHeadsController < ApplicationController
-  before_action :set_company
+  before_action :set_company, only: [:index, :approve, :destroy]
 
   def index
     @users = @company.users.where(approved: false)
