@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  get 'company_heads_registrations/new'
-  get 'company_heads_registrations/create'
+  resources :registrations, only: [:new, :create]
+
+  resources :topics do
+    resources :votes, only: [:create]
+  end
+
   resources :users, only: [:new, :create]
 
   resources :companies do
@@ -12,5 +16,5 @@ Rails.application.routes.draw do
     end
   end
 
-  root "users#new"
+  root "topics#index"
 end
