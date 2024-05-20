@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'company_heads/index'
+  get 'company_heads/approve'
+  get 'company_heads/destroy'
   get 'users/new'
   get 'users/create'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
