@@ -1,2 +1,9 @@
-<h1>CompanyHeads#index</h1>
-<p>Find me in app/views/company_heads/index.html.erb</p>
+<h1>Pending Users</h1>
+
+<% @users.each do |user| %>
+  <p>
+    <%= user.full_name %> - <%= user.role %> - <%= user.email %>
+    <%= button_to "Approve", approve_company_user_path(@company, user), method: :patch %>
+    <%= button_to "Delete", company_user_path(@company, user), method: :delete %>
+  </p>
+<% end %>

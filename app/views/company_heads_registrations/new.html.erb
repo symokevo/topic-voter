@@ -1,0 +1,25 @@
+<h1>Sign Up</h1>
+
+<%= form_with model: @company, url: registrations_path, local: true do |f| %>
+  <%= f.label :name, "Company Name" %>
+  <%= f.text_field :name %>
+
+  <%= fields_for :user, @user do |u| %>
+    <%= u.label :full_name, "Full Name" %>
+    <%= u.text_field :full_name %>
+
+    <%= u.label :role, "Role" %>
+    <%= u.select :role, options_for_select(['CTO', 'CEO', 'Team Lead']) %>
+
+    <%= u.label :email, "Email" %>
+    <%= u.email_field :email %>
+
+    <%= u.label :password, "Password" %>
+    <%= u.password_field :password %>
+
+    <%= u.label :password_confirmation, "Password Confirmation" %>
+    <%= u.password_field :password_confirmation %>
+  <% end %>
+
+  <%= f.submit "Sign Up" %>
+<% end %>
