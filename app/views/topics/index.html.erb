@@ -1,0 +1,18 @@
+<h1>Topics</h1>
+
+<%= link_to 'New Topic', new_topic_path %>
+
+<ul>
+  <% @topics.each do |topic| %>
+    <li>
+      <h3><%= topic.title %></h3>
+      <p><%= topic.description %></p>
+      <p>Created by: <%= topic.user.full_name %></p>
+      <p>Votes: <%= topic.votes.count %></p>
+      <p>Target Meeting Date: <%= topic.target_meeting_date %></p>
+      <%= link_to 'Edit', edit_topic_path(topic) if topic.user == current_user %>
+      <%= link_to 'Delete', topic_path(topic), method: :delete, data: { confirm: 'Are you sure?' } if topic.user == current_user %>
+      <%= button_to 'Vote', topic_votes_path(topic), method: :post unless topic.votes.exists?(user: current_user) %>
+    </li>
+  <% end %>
+</ul>

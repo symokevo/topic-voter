@@ -1,0 +1,14 @@
+<h1>Edit Topic</h1>
+
+<%= form_with model: @topic, local: true do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <%= f.label :target_meeting_date %>
+  <%= f.datetime_select :target_meeting_date %>
+
+  <%= f.submit 'Update Topic' %>
+<% end %>

@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'topics/index'
+  get 'topics/new'
+  get 'topics/create'
+  get 'topics/edit'
+  get 'topics/update'
+  get 'topics/destroy'
   resources :registrations, only: [:new, :create]
   resources :company_heads, only: [:new, :create]
 
