@@ -4,22 +4,19 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      if params[:user][:company_id].present?
-        company = Company.find_by(company_id: params[:user][:company_id])
-        if company
-          @user.update(company: company, approved: false)
-          flash[:notice] = "Your Account Approval is Pending."
-        else
-          flash[:alert] = "Invalid Company ID."
-          render :new and return
-        end
+    company = Company.find_by(company_id: params[:user][:company_id])
+    if Company
+      @user = company.users.build(user_params.merge(role: 'Member', approved: false))
+
+      if @user.save
+        session[:user_id] = @user.id
+        redirect_to root_path, notice: "Successfully signed up. Awaiting approval"
       else
-        @user.update(approved: true)
+        render :new
       end
-      redirect_to root_path, notice: "Signed Up Successfully."
     else
+      @user = User.new
+      @user.errors.add(:company_id, "is invalid")
       render :new
     end
   end
@@ -27,6 +24,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:full_name, :role, :email, :password, :password_confirmation, :company_id)
+    params.require(:user).permit(:full_name, :email, :password, :password_confirmation, :company_id)
   end
 end

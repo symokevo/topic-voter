@@ -1,15 +1,12 @@
 <h1>Sign Up</h1>
 
-<%= form_with model: @user, local: true do |f| %>
+<%= form_with model: @user, url: users_path, local: true do |f| %>
   
     <%= f.label :company_id, "Company ID (if joining a company)" %>
     <%= f.text_field :company_id %>
     
     <%= f.label :full_name %>
     <%= f.text_field :full_name %>
-
-    <%= f.label :role %>
-    <%= f.text_field :role %>
 
     <%= f.label :email %>
     <%= f.email_field :email %>

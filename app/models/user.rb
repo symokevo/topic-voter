@@ -11,4 +11,5 @@ class User < ApplicationRecord
 
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
+  validates :role, presence: true, inclusion: { in: ['CTO', 'CEO', 'Team Lead', 'Member'] }
 end

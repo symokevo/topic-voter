@@ -1,25 +1,23 @@
-<h1>Sign Up</h1>
+<h1>Sign Up as Company Head</h1>
 
-<%= form_with model: @company, url: registrations_path, local: true do |f| %>
-  <%= f.label :name, "Company Name" %>
-  <%= f.text_field :name %>
+<%= form_with model: @user, url: company_heads_path, local: true do |f| %>
+  <%= f.label :company_name, "Company Name" %>
+  <%= f.text_field :company_name %>
 
-  <%= fields_for :user, @user do |u| %>
-    <%= u.label :full_name, "Full Name" %>
-    <%= u.text_field :full_name %>
+  <%= f.label :role, "Role" %>
+  <%= f.select :role, options_for_select(['CTO', 'CEO', 'Team Lead']) %>
 
-    <%= u.label :role, "Role" %>
-    <%= u.select :role, options_for_select(['CTO', 'CEO', 'Team Lead']) %>
+  <%= f.label :full_name, "Full Name" %>
+  <%= f.text_field :full_name %>
 
-    <%= u.label :email, "Email" %>
-    <%= u.email_field :email %>
+  <%= f.label :email, "Email" %>
+  <%= f.email_field :email %>
 
-    <%= u.label :password, "Password" %>
-    <%= u.password_field :password %>
+  <%= f.label :password, "Password" %>
+  <%= f.password_field :password %>
 
-    <%= u.label :password_confirmation, "Password Confirmation" %>
-    <%= u.password_field :password_confirmation %>
-  <% end %>
+  <%= f.label :password_confirmation, "Password Confirmation" %>
+  <%= f.password_field :password_confirmation %>
 
   <%= f.submit "Sign Up" %>
 <% end %>
