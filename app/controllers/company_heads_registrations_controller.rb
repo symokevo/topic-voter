@@ -6,10 +6,11 @@ class CompanyHeadsRegistrationsController < ApplicationController
 
   def create
     @company = Company.new(company_params)
-    @user = @company.users.build(user_params)
-    if @company.save
+    @user = @company.users.build(user_params.merge(role: 'Company Head', approved: true))
+
+    if @company.save && @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: "Successfully signed up."
+      redirect_to root_path, notice: "Successfully signed up as a company head."
     else
       render :new
     end
@@ -22,6 +23,6 @@ class CompanyHeadsRegistrationsController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:full_name, :role, :email, :password, :password_confirmation)
+    params.require(:user).permit(:full_name, :email, :password, :password_confirmation)
   end
 end

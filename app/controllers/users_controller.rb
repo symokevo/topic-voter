@@ -5,12 +5,12 @@ class UsersController < ApplicationController
 
   def create
     company = Company.find_by(company_id: params[:user][:company_id])
-    if Company
+    if company
       @user = company.users.build(user_params.merge(role: 'Member', approved: false))
 
       if @user.save
         session[:user_id] = @user.id
-        redirect_to root_path, notice: "Successfully signed up. Awaiting approval"
+        redirect_to root_path, notice: "Successfully signed up. Awaiting approval."
       else
         render :new
       end

@@ -12,6 +12,7 @@ class TopicsController < ApplicationController
 
   def create
     @topic = current_user.topics.build(topic_params)
+    @topic.votes.build(user: current_user) # Add the owner's vote on creation
     if @topic.save
       redirect_to topics_path, notice: "Topic created successfully."
     else
@@ -39,5 +40,13 @@ class TopicsController < ApplicationController
 
   def set_topic
     @topic = Topic.find(params[:id])
+  end
+
+  def topic_params
+    params.require(:topic).permit(:title, :description, :target_meeting_date)
+  end
+
+  def authorize_user
+    redirect_to topics_path, alert: "Not authorized." unless @topic.user == current_user
   end
 end
