@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+  get 'sessions/create'
+  get 'sessions/destroy'
   root "blog_posts#index"
 
   resources :blog_posts do
@@ -21,4 +24,9 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  # Routes for user login and logout
+  get "login", to: "sessions#new"
+  post "login", to: "sessions#create"
+  delete "logout", to: "sessions#destroy"
 end
