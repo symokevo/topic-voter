@@ -1,0 +1,15 @@
+<h1>Blog Posts</h1>
+
+<% @categories.each do |category| %>
+  <h2><%= category.name %></h2>
+  <% category.subcategories.each do |subcategory| %>
+    <h3><%= subcategory.name %></h3>
+    <% subcategory.blog_posts.each do |post| %>
+      <div class="blog-post">
+        <h4><%= link_to post.title, blog_post_path(post) %></h4>
+        <p><%= post.content.truncate(100) %></p>
+        <p><%= post.metadata[:creator_name] %>, <%= post.metadata[:creator_role] %>, <%= post.metadata[:company_name] %></p>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
