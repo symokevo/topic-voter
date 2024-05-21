@@ -70,3 +70,59 @@ Here's a list of the routes described in the `routes.rb` file:
 30. **GET** `/companies/:company_id/company_heads` - Directs to `company_heads#index`
 31. **PATCH** `/companies/:company_id/company_heads/:id/approve` - Directs to `company_heads#approve`
 32. **DELETE** `/companies/:company_id/company_heads/:id` - Directs to `company_heads#destroy`
+
+
+## Associations described in each model:
+
+1. **BlogPost:**
+   - Belongs to a user.
+   - Has many comments, dependent on the destruction of the blog post.
+   - Has many likes, dependent on the destruction of the blog post.
+   - Has one attached photo.
+   - Validates presence of title, content, and category.
+   - Defines categories through a constant `CATEGORIES`.
+
+2. **Category:**
+   - Has many subcategories (which are instances of the same model), dependent on the destruction of the parent category.
+   - Belongs to a parent category (another instance of the same model), optional.
+   - Has many blog posts.
+   - Validates presence of name.
+
+3. **Comment:**
+   - Belongs to a user.
+   - Belongs to a blog post.
+   - Validates presence of content.
+   - Defines a method `metadata` that provides user name and company name.
+
+4. **Company:**
+   - Has many users, dependent on the destruction of the company.
+   - Validates presence and uniqueness of name.
+   - Generates a company ID before creation.
+
+5. **Like:**
+   - Belongs to a user.
+   - Belongs to a blog post.
+   - Validates uniqueness of user ID within the scope of a blog post ID.
+
+6. **Topic:**
+   - Belongs to a user.
+   - Has many votes, dependent on the destruction of the topic.
+   - Validates presence of title, description, and target meeting date.
+   - Executes a callback `add_initial_vote` after creation to create an initial vote for the topic.
+
+7. **User:**
+   - Belongs to a company, optional.
+   - Has secure password functionality.
+   - Has many topics, dependent on the destruction of the user.
+   - Has many votes, dependent on the destruction of the user.
+   - Validates presence and uniqueness of full name, email, and role.
+   - Validates email format and length.
+   - Validates password length.
+   - Validates inclusion of role in ['CTO', 'CEO', 'Team Lead', 'Member'].
+
+8. **Vote:**
+   - Belongs to a user.
+   - Belongs to a topic.
+   - Validates uniqueness of user ID within the scope of a topic ID.
+
+These associations define the relationships between different models in the application and enforce constraints on data integrity and validity.

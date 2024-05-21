@@ -1,6 +1,6 @@
 <h1>Sign Up as Company Head</h1>
 
-<%= form_with model: @user, url: company_heads_path, local: true do |f| %>
+<%= form_with model: @user, url: company_heads_registrations_path, local: true do |f| %>
   <%= f.label :company_name, "Company Name" %>
   <%= f.text_field :company_name %>
 
