@@ -15,7 +15,7 @@ class UsersController < ApplicationController
         render :new
       end
     else
-      @user = User.new
+      @user = User.new(user_params) # Preserve user input when re-rendering form
       @user.errors.add(:company_id, "is invalid")
       render :new
     end

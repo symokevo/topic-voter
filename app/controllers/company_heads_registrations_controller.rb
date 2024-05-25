@@ -9,10 +9,21 @@ class CompanyHeadsRegistrationsController < ApplicationController
     @company.generate_company_id # Generate company_id before saving
     @user = @company.users.build(user_params.merge(role: 'Company Head', approved: true))
 
-    if @company.save && @user.save
-      session[:user_id] = @user.id
-      redirect_to root_path, notice: "Successfully signed up as a company head."
-    else
+    ActiveRecord::Base.transaction do
+      if @company.save
+        if @user.save
+          session[:user_id] = @user.id
+          redirect_to root_path, notice: "Successfully signed up as a company head."
+        else
+          raise ActiveRecord::Rollback
+        end
+      else
+        raise ActiveRecord::Rollback
+      end
+    end
+
+    if @company.errors.any? || @user.errors.any?
+      flash.now[:alert] = @company.errors.full_messages + @user.errors.full_messages
       render :new
     end
   end
