@@ -6,6 +6,7 @@ class CompanyHeadsRegistrationsController < ApplicationController
 
   def create
     @company = Company.new(company_params)
+    @company.generate_company_id # Generate company_id before saving
     @user = @company.users.build(user_params.merge(role: 'Company Head', approved: true))
 
     if @company.save && @user.save
