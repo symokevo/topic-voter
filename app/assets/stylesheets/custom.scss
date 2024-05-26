@@ -5,3 +5,49 @@
     margin-bottom: 24px;
     text-align: center;
     }
+
+
+// Define custom colors with descriptive names
+$custom-colors: (
+  "dark-purple": #400792,
+  "vivid-purple": #6609EB,
+  "bright-purple": #8328FB,
+  "light-purple": #984EFA,
+  "pale-purple": #BA8AFA,
+  "lavender": #D67FFF,
+  "medium-purple": #C44BFF,
+  "neon-purple": #B10CFF,
+  "deep-purple": #8C00CC,
+  "royal-purple": #660099
+);
+
+// Generate custom color classes
+@each $name, $color in $custom-colors {
+  .text-#{$name} {
+    color: $color !important;
+  }
+
+  .bg-#{$name} {
+    background-color: $color !important;
+  }
+
+  .border-#{$name} {
+    border-color: $color !important;
+  }
+}
+/* ============================================= */
+/* Footer */
+/* ============================================= */
+.footer-logo {
+    margin-bottom: 0px; // Adjust this value as needed
+    padding: 5px; // Adjust this value as needed
+  }
+
+.reduce-space {
+    margin-top: -10px; // Adjust this value as needed to reduce the space
+}
+
+.footer-logo {
+    margin-bottom: 10px; // Adjust this value as needed
+    padding: 5px; // Adjust this value as needed
+}
