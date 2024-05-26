@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  get 'static_pages/about'
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/destroy'
   root "blog_posts#index"
+  get "/about", to: "static_pages#about"
 
   resources :blog_posts do
     resources :comments, only: [:create]

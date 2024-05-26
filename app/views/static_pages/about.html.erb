@@ -1,15 +1,176 @@
-<% provide(:title, "About") %>
-<h1>About Us</h1>
-<p>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-  tempor incididunt ut labore et dolore magna aliqua. In hac habitasse 
-  platea dictumst vestibulum rhoncus. Malesuada nunc vel risus commodo viverra. 
-  Sed ullamcorper morbi tincidunt ornare massa eget egestas purus. Faucibus 
-  turpis in eu mi bibendum neque egestas congue quisque. In fermentum et 
-  sollicitudin ac orci. Non nisi est sit amet facilisis magna etiam tempor orci. 
-  Amet nisl suscipit adipiscing bibendum est ultricies integer. Amet purus 
-  gravida quis blandit. Justo eget magna fermentum iaculis eu. Gravida rutrum 
-  quisque non tellus orci ac. Lobortis scelerisque fermentum dui faucibus. 
-  Ligula ullamcorper malesuada proin libero nunc consequat interdum. Non 
-  curabitur gravida arcu ac tortor dignissim.
-</p>
+<div class="container about-container">
+
+  <% provide(:title, "About") %>
+  <h1>About Topic Voter</h1>
+  <p>
+  This is a web application that serves as a tool to help teams come to quick decisions 
+  regariding topics that are important to them. It allows users to create topics, vote on
+  them, and comment on them. The application is built using Ruby on Rails and PostgreSQL.
+  </p>
+  <div class="container py-5">
+    <h3 class="mb-4">How to set up and run the code</h3>
+    <p>Steps are necessary to get the application up and running.</p>
+    
+    <h2 class="mt-4">Make sure you have the following:</h2>
+    <ul class="list-unstyled">
+      <li><strong>Ruby version:</strong> ~> ruby 3.3.0</li>
+      <li><strong>Rails version:</strong> ~> Rails 7.1.3.3</li>
+    </ul>
+
+    <h3 class="mt-4">System dependencies:</h3>
+    <ul class="list-group mb-4">
+      <li class="list-group-item">PostgreSQL</li>
+      <li class="list-group-item">Bootstrap 5</li>
+      <li class="list-group-item">Operating System: Parrot Security 6</li>
+      <li class="list-group-item">Code editor: Visual Studio Code</li>
+      <li class="list-group-item">Development tools: Bundler, Git</li>
+    </ul>
+
+    <h2 class="mt-5">Backend routes</h2>
+    <p>Here's a list of the routes described in the <code>routes.rb</code> file:</p>
+    
+    <h3 class="mt-4">Root Route</h3>
+    <ul class="list-group mb-4">
+      <li class="list-group-item">GET / - Directs to blog_posts#index</li>
+    </ul>
+
+    <h3 class="mt-4">Blog Posts Routes</h3>
+    <ul class="list-group mb-4">
+      <li class="list-group-item">GET /blog_posts - Directs to blog_posts#index</li>
+      <li class="list-group-item">GET /blog_posts/new - Directs to blog_posts#new</li>
+      <li class="list-group-item">POST /blog_posts - Directs to blog_posts#create</li>
+      <li class="list-group-item">GET /blog_posts/:id - Directs to blog_posts#show</li>
+      <li class="list-group-item">GET /blog_posts/:id/edit - Directs to blog_posts#edit</li>
+      <li class="list-group-item">PATCH/PUT /blog_posts/:id - Directs to blog_posts#update</li>
+      <li class="list-group-item">DELETE /blog_posts/:id - Directs to blog_posts#destroy</li>
+    </ul>
+
+    <h3 class="mt-4">Nested Comments Routes within Blog Posts</h3>
+    <ul class="list-group mb-4">
+      <li class="list-group-item">POST /blog_posts/:blog_post_id/comments - Directs to comments#create</li>
+    </ul>
+
+    <h3 class="mt-4">Nested Likes Routes within Blog Posts</h3>
+    <ul class="list-group mb-4">
+      <li class="list-group-item">POST /blog_posts/:blog_post_id/likes - Directs to likes#create</li>
+    </ul>
+
+    <h3 class="mt-4">Topics Routes</h3>
+    <ul class="list-group mb-4">
+      <li class="list-group-item">GET /topics - Directs to topics#index</li>
+      <li class="list-group-item">GET /topics/new - Directs to topics#new</li>
+      <li class="list-group-item">POST /topics - Directs to topics#create</li>
+      <li class="list-group-item">GET /topics/:id - Directs to topics#show</li>
+      <li class="list-group-item">GET /topics/:id/edit - Directs to topics#edit</li>
+      <li class="list-group-item">PATCH/PUT /topics/:id - Directs to topics#update</li>
+      <li class="list-group-item">DELETE /topics/:id - Directs to topics#destroy</li>
+    </ul>
+
+    <h3 class="mt-4">Nested Votes Routes within Topics</h3>
+    <ul class="list-group mb-4">
+      <li class="list-group-item">POST /topics/:topic_id/votes - Directs to votes#create</li>
+    </ul>
+
+    <h3 class="mt-4">Users Routes</h3>
+    <ul class="list-group mb-4">
+      <li class="list-group-item">GET /users/new - Directs to users#new</li>
+      <li class="list-group-item">POST /users - Directs to users#create</li>
+    </ul>
+
+    <h3 class="mt-4">Company Heads Registrations Routes</h3>
+    <ul class="list-group mb-4">
+      <li class="list-group-item">GET /company_heads_registrations/new - Directs to company_heads_registrations#new</li>
+      <li class="list-group-item">POST /company_heads_registrations - Directs to company_heads_registrations#create</li>
+    </ul>
+
+    <h3 class="mt-4">Companies Routes</h3>
+    <ul class="list-group mb-4">
+      <li class="list-group-item">GET /companies - Directs to companies#index</li>
+      <li class="list-group-item">GET /companies/new - Directs to companies#new</li>
+      <li class="list-group-item">POST /companies - Directs to companies#create</li>
+      <li class="list-group-item">GET /companies/:id - Directs to companies#show</li>
+      <li class="list-group-item">GET /companies/:id/edit - Directs to companies#edit</li>
+      <li class="list-group-item">PATCH/PUT /companies/:id - Directs to companies#update</li>
+      <li class="list-group-item">DELETE /companies/:id - Directs to companies#destroy</li>
+    </ul>
+
+    <h3 class="mt-4">Nested Company Heads Routes within Companies</h3>
+    <ul class="list-group mb-4">
+      <li class="list-group-item">GET /companies/:company_id/company_heads - Directs to company_heads#index</li>
+      <li class="list-group-item">PATCH /companies/:company_id/company_heads/:id/approve - Directs to company_heads#approve</li>
+      <li class="list-group-item">DELETE /companies/:company_id/company_heads/:id - Directs to company_heads#destroy</li>
+    </ul>
+
+    <h3 class="mt-4">Associations described in each model:</h3>
+    
+    <h4 class="mt-3">BlogPost:</h4>
+    <ul class="list-group mb-4">
+      <li class="list-group-item">Belongs to a user.</li>
+      <li class="list-group-item">Has many comments, dependent on the destruction of the blog post.</li>
+      <li class="list-group-item">Has many likes, dependent on the destruction of the blog post.</li>
+      <li class="list-group-item">Has one attached photo.</li>
+      <li class="list-group-item">Validates presence of title, content, and category.</li>
+      <li class="list-group-item">Defines categories through a constant CATEGORIES.</li>
+    </ul>
+
+    <h4 class="mt-3">Category:</h4>
+    <ul class="list-group mb-4">
+      <li class="list-group-item">Has many subcategories (which are instances of the same model), dependent on the destruction of the parent category.</li>
+      <li class="list-group-item">Belongs to a parent category (another instance of the same model), optional.</li>
+      <li class="list-group-item">Has many blog posts.</li>
+      <li class="list-group-item">Validates presence of name.</li>
+    </ul>
+
+    <h4 class="mt-3">Comment:</h4>
+    <ul class="list-group mb-4">
+      <li class="list-group-item">Belongs to a user.</li>
+      <li class="list-group-item">Belongs to a blog post.</li>
+      <li class="list-group-item">Validates presence of content.</li>
+      <li class="list-group-item">Defines a method metadata that provides user name and company name.</li>
+    </ul>
+
+    <h4 class="mt-3">Company:</h4>
+    <ul class="list-group mb-4">
+      <li class="list-group-item">Has many users, dependent on the destruction of the company.</li>
+      <li class="list-group-item">Validates presence and uniqueness of name.</li>
+      <li class="list-group-item">Generates a company ID before creation.</li>
+    </ul>
+
+    <h4 class="mt-3">Like:</h4>
+    <ul class="list-group mb-4">
+      <li class="list-group-item">Belongs to a user.</li>
+      <li class="list-group-item">Belongs to a blog post.</li>
+      <li class="list-group-item">Validates uniqueness of user ID within the scope of a blog post ID.</li>
+    </ul>
+
+    <h4 class="mt-3">Topic:</h4>
+    <ul class="list-group mb-4">
+      <li class="list-group-item">Belongs to a user.</li>
+      <li class="list-group-item">Has many votes, dependent on the destruction of the topic.</li>
+      <li class="list-group-item">Validates presence of title, description, and target meeting date.</li>
+      <li class="list-group-item">Executes a callback add_initial_vote after creation to create an initial vote for the topic.</li>
+    </ul>
+
+    <h4 class="mt-3">User:</h4>
+    <ul class="list-group mb-4">
+      <li class="list-group-item">Belongs to a company, optional.</li>
+      <li class="list-group-item">Has secure password functionality.</li>
+      <li class="list-group-item">Has many topics, dependent on the destruction of the user.</li>
+      <li class="list-group-item">Has many votes, dependent on the destruction of the user.</li>
+      <li class="list-group-item">Validates presence and uniqueness of full name, email, and role.</li>
+      <li class="list-group-item">Validates email format and length.</li>
+      <li class="list-group-item">Validates password length.</li>
+      <li class="list-group-item">Validates inclusion of role in ['CTO', 'CEO', 'Team Lead', 'Member'].</li>
+    </ul>
+
+    <h4 class="mt-3">Vote:</h4>
+    <ul class="list-group mb-4">
+      <li class="list-group-item">Belongs to a user.</li>
+      <li class="list-group-item">Belongs to a topic.</li>
+      <li class="list-group-item">Validates uniqueness of user ID within the scope of a topic ID.</li>
+    </ul>
+
+    <p>These associations define the relationships between different models in the application and enforce constraints on data integrity and validity.</p>
+  </div>
+</div>
+

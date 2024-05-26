@@ -35,19 +35,31 @@ $custom-colors: (
     border-color: $color !important;
   }
 }
+
+
+/* ============================================= */
+/* Footer */
+/* ============================================= */
+.about-container {
+    margin-top: 20px;
+    padding: 5px;
+  }
+
+
+
 /* ============================================= */
 /* Footer */
 /* ============================================= */
 .footer-logo {
-    margin-bottom: 0px; // Adjust this value as needed
-    padding: 5px; // Adjust this value as needed
+    margin-bottom: 0px;
+    padding: 5px;
   }
 
 .reduce-space {
-    margin-top: -10px; // Adjust this value as needed to reduce the space
+    margin-top: -10px;
 }
 
 .footer-logo {
-    margin-bottom: 10px; // Adjust this value as needed
-    padding: 5px; // Adjust this value as needed
+    margin-bottom: 10px;
+    padding: 5px; 
 }
