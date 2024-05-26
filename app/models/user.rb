@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_secure_password
   has_many :topics, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :blog_posts, dependent: :destroy
 
   before_save { self.email = email.downcase }
 

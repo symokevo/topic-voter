@@ -6,6 +6,7 @@ class BlogPostsController < ApplicationController
   before_action :authorize_company_head!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
+    @categories = Category.all
     @blog_posts = BlogPost.all
   end
 
@@ -48,7 +49,7 @@ class BlogPostsController < ApplicationController
   end
 
   def blog_post_params
-    params.require(:blog_post).permit(:title, :content, :category, :photo)
+    params.require(:blog_post).permit(:title, :content, :category_id)
   end
 
   def authorize_company_head!
