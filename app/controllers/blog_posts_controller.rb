@@ -6,7 +6,8 @@ class BlogPostsController < ApplicationController
   before_action :authorize_company_head!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @categories = Category.all
+    # @categories = Category.all
+    @categories = Category.includes(:blog_posts).all
     @blog_posts = BlogPost.all
   end
 
