@@ -1,12 +1,9 @@
-# app/controllers/blog_posts_controller.rb
 class BlogPostsController < ApplicationController
-  before_action :require_user, except: [:index, :show]
-  before_action :set_blog_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_blog_post, only: [:show, :edit, :update, :destroy]
   before_action :authorize_company_head!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    # @categories = Category.all
     @categories = Category.includes(:blog_posts).all
     @blog_posts = BlogPost.all
   end

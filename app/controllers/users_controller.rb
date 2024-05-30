@@ -1,24 +1,14 @@
 class UsersController < ApplicationController
-  def new
-    @user = User.new
+  def index
+    @users = User.all
   end
 
-  def create
-    company = Company.find_by(company_id: params[:user][:company_id])
-    if company
-      @user = company.users.build(user_params.merge(role: 'Member', approved: false))
+  def show
+    @user = User.find(params[:id])
+  end
 
-      if @user.save
-        session[:user_id] = @user.id
-        redirect_to root_path, notice: "Successfully signed up. Awaiting approval."
-      else
-        render :new
-      end
-    else
-      @user = User.new(user_params) # Preserve user input when re-rendering form
-      @user.errors.add(:company_id, "is invalid")
-      render :new
-    end
+  def new
+    @user = User.new
   end
 
   private

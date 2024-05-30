@@ -1,11 +1,20 @@
 Rails.application.routes.draw do
+  # Static pages
   get 'static_pages/about'
-  get 'sessions/new'
-  get 'sessions/create'
-  get 'sessions/destroy'
-  root "blog_posts#index"
   get "/about", to: "static_pages#about"
 
+  # Devise routes for users with custom registrations and sessions controllers
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }
+
+  devise_scope :user do
+    get 'company_heads/sign_up', to: 'company_heads_registrations#new', as: 'new_company_heads_registration'
+    post 'company_heads', to: 'company_heads_registrations#create', as: 'company_heads_registration'
+  end
+
+  # Other resources
   resources :blog_posts do
     resources :comments, only: [:create]
     resources :likes, only: [:create]
@@ -14,9 +23,6 @@ Rails.application.routes.draw do
   resources :topics do
     resources :votes, only: [:create]
   end
-
-  resources :users, only: [:new, :create]
-  resources :company_heads_registrations, only: [:new, :create]
 
   resources :companies do
     resources :company_heads, only: [:index] do
@@ -27,8 +33,8 @@ Rails.application.routes.draw do
     end
   end
 
-  # Routes for user login and logout
-  get "login", to: "sessions#new"
-  post "login", to: "sessions#create"
-  delete "logout", to: "sessions#destroy"
+  resources :users, only: [:index, :show]
+
+  # Root route
+  root "blog_posts#index"
 end
