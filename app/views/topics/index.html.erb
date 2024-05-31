@@ -13,8 +13,8 @@
         <p><strong>Approval Status:</strong> <%= current_user.approved? ? "Approved" : "Pending" %></p>
         <p><strong>Topics Created:</strong> <%= current_user.topics.count %></p>
         <% if current_user.role == 'Company Head' %>
-          <p><strong>Company ID:</strong> <%= current_user.company_id %></p>
-          <%= link_to 'Manage Members', company_company_heads_path(current_user.company_id), class: 'btn btn-secondary btn-sm' %>
+          <p><strong>Company ID:</strong> <%= current_user.company.company_code %></p>
+          <%= link_to 'Manage Members', company_company_heads_path(current_user.company), class: 'btn btn-secondary btn-sm' %>
         <% end %>
         <%= link_to 'Edit Profile', edit_user_registration_path, class: 'btn btn-secondary btn-sm' %>
       </div>
