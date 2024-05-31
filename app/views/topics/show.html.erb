@@ -5,7 +5,7 @@
   <div class="card-body">
     <% if @topic.user %>
       <p><strong>Created By:</strong> <%= @topic.user.full_name %></p>
-      <p><strong>Date Created:</strong> <%= @topic.created_at.to_s(:long) %></p>
+      <p><strong>Date Created:</strong> <%= @topic.created_at %></p>
       <p><strong>Target Meeting Date:</strong> <%= @topic.target_meeting_date %></p>
       <p><strong>Description:</strong> <%= @topic.description %></p>
       <p><strong>Votes:</strong> <%= @topic.votes.count %></p>
@@ -13,7 +13,7 @@
       <% if user_signed_in? %>
         <% existing_vote = @topic.votes.find_by(user: current_user) %>
         <% if existing_vote %>
-          <%= button_to 'Remove Vote', topic_vote_path(@topic, existing_vote), method: :delete, class: 'btn btn-danger' %>
+          <%= button_to 'Remove Vote', topic_votes_path(@topic, existing_vote), method: :delete, class: 'btn btn-danger' %>
         <% else %>
           <%= form_with(model: [@topic, @topic.votes.new], local: true) do |form| %>
             <%= form.submit 'Vote', class: 'btn btn-primary' %>
