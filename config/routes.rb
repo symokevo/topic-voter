@@ -1,9 +1,8 @@
+# config/routes.rb
 Rails.application.routes.draw do
-  # Static pages
   get 'static_pages/about'
   get "/about", to: "static_pages#about"
 
-  # Devise routes for users with custom registrations and sessions controllers
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
@@ -14,7 +13,6 @@ Rails.application.routes.draw do
     post 'company_heads', to: 'company_heads_registrations#create', as: 'company_heads_registration'
   end
 
-  # Other resources
   resources :blog_posts do
     resources :comments, only: [:create]
     resources :likes, only: [:create]
@@ -35,6 +33,5 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show]
 
-  # Root route
   root "blog_posts#index"
 end

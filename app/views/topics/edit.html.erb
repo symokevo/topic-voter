@@ -1,14 +1,20 @@
-<h1>Edit Topic</h1>
+<%= form_with(model: @topic, local: true) do |form| %>
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
 
-<%= form_with model: @topic, local: true do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: 'form-control' %>
+  </div>
 
-  <%= f.label :description %>
-  <%= f.text_area :description %>
+  <div class="form-group">
+    <%= form.label :target_meeting_date %>
+    <%= form.date_field :target_meeting_date, class: 'form-control' %>
+  </div>
 
-  <%= f.label :target_meeting_date %>
-  <%= f.datetime_select :target_meeting_date %>
-
-  <%= f.submit 'Update Topic' %>
+  <%= form.submit 'Update Topic', class: 'btn btn-primary' %>
 <% end %>
+
+<%= link_to 'Delete Topic', topic_path(@topic), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger mt-2' %>

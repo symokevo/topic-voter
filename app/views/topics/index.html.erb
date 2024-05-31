@@ -1,18 +1,51 @@
-<h1>Topics</h1>
+<%= link_to 'Create New Topic', new_topic_path, class: 'btn btn-primary' %>
 
-<%= link_to 'New Topic', new_topic_path %>
-
-<ul>
-  <% @topics.each do |topic| %>
-    <li>
-      <h3><%= topic.title %></h3>
-      <p><%= topic.description %></p>
-      <p>Created by: <%= topic.user.full_name %></p>
-      <p>Votes: <%= topic.votes.count %></p>
-      <p>Target Meeting Date: <%= topic.target_meeting_date %></p>
-      <%= link_to 'Edit', edit_topic_path(topic) if topic.user == current_user %>
-      <%= link_to 'Delete', topic_path(topic), method: :delete, data: { confirm: 'Are you sure?' } if topic.user == current_user %>
-      <%= button_to 'Vote', topic_votes_path(topic), method: :post unless topic.votes.exists?(user: current_user) %>
-    </li>
-  <% end %>
-</ul>
+<div class="row mt-3">
+  <div class="col-md-3">
+    <div class="card">
+      <div class="card-header">
+        <%= current_user.full_name %>
+      </div>
+      <div class="card-body">
+        <p><strong>Company:</strong> <%= current_user.company&.name || "N/A" %></p>
+        <p><strong>Email:</strong> <%= current_user.email %></p>
+        <p><strong>Role:</strong> <%= current_user.role %></p>
+        <p><strong>Approval Status:</strong> <%= current_user.approved? ? "Approved" : "Pending" %></p>
+        <p><strong>Topics Created:</strong> <%= current_user.topics.count %></p>
+        <% if current_user.role == 'Company Head' %>
+          <p><strong>Company ID:</strong> <%= current_user.company_id %></p>
+          <%= link_to 'Manage Members', company_company_heads_path(current_user.company_id), class: 'btn btn-secondary btn-sm' %>
+        <% end %>
+        <%= link_to 'Edit Profile', edit_user_registration_path, class: 'btn btn-secondary btn-sm' %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Target Meeting Date</th>
+          <th>Votes</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @topics.each do |topic| %>
+          <tr>
+            <td><%= link_to topic.title, topic_path(topic) %></td>
+            <td><%= truncate(topic.description, length: 100) %></td>
+            <td><%= topic.target_meeting_date %></td>
+            <td><%= topic.votes.count %></td>
+            <td>
+              <% if topic.user == current_user %>
+                <%= link_to 'Edit', edit_topic_path(topic), class: 'btn btn-warning btn-sm' %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

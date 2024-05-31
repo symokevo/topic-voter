@@ -22,7 +22,6 @@
     <%= yield %>
   </div>
   <%= render 'layouts/footer' %>
-  <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger mt-3" %>
   <div class="fixed-bottom text-center debug_dump">
     <%= debug(params) if Rails.env.development? %>
   </div>

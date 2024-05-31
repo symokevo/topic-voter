@@ -1,9 +1,26 @@
-<h1>Pending Users</h1>
-
-<% @users.each do |user| %>
-  <p>
-    <%= user.full_name %> - <%= user.role %> - <%= user.email %>
-    <%= button_to "Approve", approve_company_user_path(@company, user), method: :patch %>
-    <%= button_to "Delete", company_user_path(@company, user), method: :delete %>
-  </p>
-<% end %>
+<h1>Company Members</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Full Name</th>
+      <th>Email</th>
+      <th>Approval Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.full_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.approved? ? "Approved" : "Pending" %></td>
+        <td>
+          <% unless user.approved? %>
+            <%= link_to 'Approve', approve_company_head_path(user), method: :patch, class: 'btn btn-success btn-sm' %>
+          <% end %>
+          <%= link_to 'Delete', company_head_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

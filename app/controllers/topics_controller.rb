@@ -1,10 +1,16 @@
 class TopicsController < ApplicationController
   before_action :require_user, except: [:index, :show]
-  before_action :set_topic, only: [:edit, :update, :destroy]
+  before_action :set_topic, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def index
     @topics = Topic.includes(:votes).all.sort_by { |topic| -topic.votes.count }
+  end
+
+  def show
+    @topic = Topic.find(params[:id])
+    Rails.logger.debug "Topic: #{@topic.inspect}"
+    Rails.logger.debug "Topic User: #{@topic.user.inspect}"
   end
 
   def new
@@ -36,7 +42,7 @@ class TopicsController < ApplicationController
     redirect_to topics_path, notice: "Topic deleted successfully."
   end
 
-  private
+  # private
 
   def set_topic
     @topic = Topic.find(params[:id])
