@@ -1,15 +1,14 @@
 <div class="container about-container">
-
   <% provide(:title, "About") %>
   <h1>About Topic Voter</h1>
   <p>
-  This is a web application that serves as a tool to help teams come to quick decisions 
-  regariding topics that are important to them. It allows users to create topics, vote on
-  them, and comment on them. The application is built using Ruby on Rails and PostgreSQL.
+    This is a web application that serves as a tool to help teams come to quick decisions 
+    regarding topics that are important to them. It allows users to create topics, vote on
+    them, and comment on them. The application is built using Ruby on Rails and PostgreSQL.
   </p>
   <div class="container py-5">
     <h3 class="mb-4">How to set up and run the code</h3>
-    <p>Steps are necessary to get the application up and running.</p>
+    <p>Steps necessary to get the application up and running.</p>
     
     <h2 class="mt-4">Make sure you have the following:</h2>
     <ul class="list-unstyled">
@@ -73,14 +72,14 @@
 
     <h3 class="mt-4">Users Routes</h3>
     <ul class="list-group mb-4">
-      <li class="list-group-item">GET /users/new - Directs to users#new</li>
-      <li class="list-group-item">POST /users - Directs to users#create</li>
+      <li class="list-group-item">GET /users - Directs to users#index</li>
+      <li class="list-group-item">GET /users/:id - Directs to users#show</li>
     </ul>
 
     <h3 class="mt-4">Company Heads Registrations Routes</h3>
     <ul class="list-group mb-4">
-      <li class="list-group-item">GET /company_heads_registrations/new - Directs to company_heads_registrations#new</li>
-      <li class="list-group-item">POST /company_heads_registrations - Directs to company_heads_registrations#create</li>
+      <li class="list-group-item">GET /company_heads/sign_up - Directs to company_heads_registrations#new</li>
+      <li class="list-group-item">POST /company_heads - Directs to company_heads_registrations#create</li>
     </ul>
 
     <h3 class="mt-4">Companies Routes</h3>
@@ -133,44 +132,7 @@
     <ul class="list-group mb-4">
       <li class="list-group-item">Has many users, dependent on the destruction of the company.</li>
       <li class="list-group-item">Validates presence and uniqueness of name.</li>
-      <li class="list-group-item">Generates a company ID before creation.</li>
+      <li class="list-group-item">Generates a company code before creation.</li>
     </ul>
 
-    <h4 class="mt-3">Like:</h4>
-    <ul class="list-group mb-4">
-      <li class="list-group-item">Belongs to a user.</li>
-      <li class="list-group-item">Belongs to a blog post.</li>
-      <li class="list-group-item">Validates uniqueness of user ID within the scope of a blog post ID.</li>
-    </ul>
-
-    <h4 class="mt-3">Topic:</h4>
-    <ul class="list-group mb-4">
-      <li class="list-group-item">Belongs to a user.</li>
-      <li class="list-group-item">Has many votes, dependent on the destruction of the topic.</li>
-      <li class="list-group-item">Validates presence of title, description, and target meeting date.</li>
-      <li class="list-group-item">Executes a callback add_initial_vote after creation to create an initial vote for the topic.</li>
-    </ul>
-
-    <h4 class="mt-3">User:</h4>
-    <ul class="list-group mb-4">
-      <li class="list-group-item">Belongs to a company, optional.</li>
-      <li class="list-group-item">Has secure password functionality.</li>
-      <li class="list-group-item">Has many topics, dependent on the destruction of the user.</li>
-      <li class="list-group-item">Has many votes, dependent on the destruction of the user.</li>
-      <li class="list-group-item">Validates presence and uniqueness of full name, email, and role.</li>
-      <li class="list-group-item">Validates email format and length.</li>
-      <li class="list-group-item">Validates password length.</li>
-      <li class="list-group-item">Validates inclusion of role in ['CTO', 'CEO', 'Team Lead', 'Member'].</li>
-    </ul>
-
-    <h4 class="mt-3">Vote:</h4>
-    <ul class="list-group mb-4">
-      <li class="list-group-item">Belongs to a user.</li>
-      <li class="list-group-item">Belongs to a topic.</li>
-      <li class="list-group-item">Validates uniqueness of user ID within the scope of a topic ID.</li>
-    </ul>
-
-    <p>These associations define the relationships between different models in the application and enforce constraints on data integrity and validity.</p>
-  </div>
-</div>
-
+    <h4 class="mt-3">Like:</

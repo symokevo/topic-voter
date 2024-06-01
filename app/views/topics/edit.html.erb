@@ -1,20 +1,21 @@
-<%= form_with(model: @topic, local: true) do |form| %>
-  <div class="form-group">
-    <%= form.label :title %>
+<%= form_with(model: @topic, local: true, class: 'p-4 bg-light rounded shadow-sm') do |form| %>
+  <div class="mb-3">
+    <%= form.label :title, class: 'form-label' %>
     <%= form.text_field :title, class: 'form-control' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :description %>
-    <%= form.text_area :description, class: 'form-control' %>
+  <div class="mb-3">
+    <%= form.label :description, class: 'form-label' %>
+    <%= form.text_area :description, class: 'form-control', rows: 5 %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :target_meeting_date %>
+  <div class="mb-3">
+    <%= form.label :target_meeting_date, class: 'form-label' %>
     <%= form.date_field :target_meeting_date, class: 'form-control' %>
   </div>
 
-  <%= form.submit 'Update Topic', class: 'btn btn-primary' %>
+  <div class="d-flex justify-content-between">
+    <%= form.submit 'Update Topic', class: 'btn btn-primary' %>
+    <%= link_to 'Delete Topic', topic_path(@topic), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+  </div>
 <% end %>
-
-<%= link_to 'Delete Topic', topic_path(@topic), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger mt-2' %>

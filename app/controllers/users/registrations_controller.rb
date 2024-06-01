@@ -11,7 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    company = Company.find_by(company_id: sign_up_params[:company_id])
+    company = Company.find_by(company_code: sign_up_params[:company_code])
     if company
       build_resource(sign_up_params.merge(role: 'Member', approved: false, company: company))
 
@@ -34,7 +34,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     else
       build_resource(sign_up_params)
-      resource.errors.add(:company_id, "is invalid")
+      resource.errors.add(:company_code, "is invalid")
       clean_up_passwords resource
       set_minimum_password_length
       respond_with resource
@@ -68,7 +68,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:full_name, :company_id])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:full_name, :company_code])
   end
 
   # If you have extra params to permit, append them to the sanitizer.

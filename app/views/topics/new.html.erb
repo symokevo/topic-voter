@@ -1,14 +1,22 @@
-<h1>New Topic</h1>
+<h1 class="mb-4">New Topic</h1>
 
-<%= form_with model: @topic, local: true do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+<%= form_with model: @topic, local: true, class: 'p-4 bg-light rounded shadow-sm' do |f| %>
+  <div class="mb-3">
+    <%= f.label :title, class: 'form-label' %>
+    <%= f.text_field :title, class: 'form-control', placeholder: 'Enter topic title' %>
+  </div>
 
-  <%= f.label :description %>
-  <%= f.text_area :description %>
+  <div class="mb-3">
+    <%= f.label :description, class: 'form-label' %>
+    <%= f.text_area :description, class: 'form-control', rows: 5, placeholder: 'Enter topic description' %>
+  </div>
 
-  <%= f.label :target_meeting_date %>
-  <%= f.datetime_select :target_meeting_date %>
+  <div class="mb-3">
+    <%= f.label :target_meeting_date, class: 'form-label' %>
+    <%= f.datetime_select :target_meeting_date, class: 'form-control' %>
+  </div>
 
-  <%= f.submit 'Create Topic' %>
+  <div class="d-grid">
+    <%= f.submit 'Create Topic', class: 'btn btn-primary btn-block' %>
+  </div>
 <% end %>

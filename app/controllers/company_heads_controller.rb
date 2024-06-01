@@ -2,19 +2,19 @@ class CompanyHeadsController < ApplicationController
   before_action :set_company, only: [:index, :approve, :destroy]
 
   def index
-    @users = @company.users.where(approved: false)
+    @users = @company.users
   end
 
   def approve
     user = @company.users.find(params[:id])
     user.update(approved: true)
-    redirect_to company_heads_path, notice: "User Approved."
+    redirect_to company_company_heads_path(@company), notice: "User Approved."
   end
 
   def destroy
     user = @company.users.find(params[:id])
     user.destroy
-    redirect_to company_heads_path, notice: "User Deleted."
+    redirect_to company_company_heads_path(@company), notice: "User Deleted."
   end
 
   private

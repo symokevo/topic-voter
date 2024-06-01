@@ -1,4 +1,3 @@
-# config/routes.rb
 Rails.application.routes.draw do
   get 'static_pages/about'
   get "/about", to: "static_pages#about"
@@ -19,7 +18,7 @@ Rails.application.routes.draw do
   end
 
   resources :topics do
-    resources :votes, only: [:create]
+    resources :votes, only: [:create, :destroy]
   end
 
   resources :companies do
