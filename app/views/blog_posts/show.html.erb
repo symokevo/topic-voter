@@ -1,30 +1,32 @@
-<!-- app/views/blog_posts/show.html.erb -->
-<p>
-  <strong>Title:</strong>
-  <%= @blog_post.title %>
-</p>
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title"><strong>Title:</strong> <%= @blog_post.title %></h5>
 
-<p>
-  <strong>Content:</strong>
-  <%= @blog_post.content %>
-</p>
+    <p class="card-text">
+      <strong>Content:</strong>
+      <%= @blog_post.content %>
+    </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @blog_post.category %>
-</p>
+    <p class="card-text">
+      <strong>Category:</strong>
+      <%= @blog_post.category %>
+    </p>
 
-<p>
-  <strong>Created by:</strong>
-  <%= @blog_post.user.full_name %> (<%= @blog_post.user.role %>) at <%= @blog_post.user.company.name %>
-</p>
+    <p class="card-text">
+      <strong>Created by:</strong>
+      <%= @blog_post.user.full_name %> (<%= @blog_post.user.role %>) at <%= @blog_post.user.company.name %>
+    </p>
 
-<% if @blog_post.photo.attached? %>
-  <p>
-    <%= image_tag @blog_post.photo %>
-  </p>
-<% end %>
+    <% if @blog_post.photo.attached? %>
+      <div class="mb-3">
+        <%= image_tag @blog_post.photo, class: "img-fluid" %>
+      </div>
+    <% end %>
+  </div>
 
-<%= link_to 'Edit', edit_blog_post_path(@blog_post) %> |
-<%= link_to 'Delete', blog_post_path(@blog_post), method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Back', blog_posts_path %>
+  <div class="card-footer text-muted">
+    <%= link_to 'Edit', edit_blog_post_path(@blog_post), class: 'btn btn-warning me-2' %>
+    <%= link_to 'Delete', blog_post_path(@blog_post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger me-2' %>
+    <%= link_to 'Back', blog_posts_path, class: 'btn btn-secondary' %>
+  </div>
+</div>

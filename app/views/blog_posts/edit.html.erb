@@ -1,7 +1,6 @@
-<!-- app/views/blog_posts/edit.html.erb -->
-<%= form_with(model: @blog_post, local: true) do |form| %>
+<%= form_with(model: @blog_post, local: true, class: "needs-validation") do |form| %>
   <% if @blog_post.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="alert alert-danger">
       <h2><%= pluralize(@blog_post.errors.count, "error") %> prohibited this blog post from being saved:</h2>
       <ul>
         <% @blog_post.errors.full_messages.each do |message| %>
@@ -11,27 +10,27 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control", required: true %>
   </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+  <div class="mb-3">
+    <%= form.label :content, class: "form-label" %>
+    <%= form.text_area :content, class: "form-control", rows: 5, required: true %>
   </div>
 
-  <div class="field">
-    <%= form.label :category %>
-    <%= form.select :category, BlogPost::CATEGORIES %>
+  <div class="mb-3">
+    <%= form.label :category, class: "form-label" %>
+    <%= form.select :category, BlogPost::CATEGORIES, {}, class: "form-select", required: true %>
   </div>
 
-  <div class="field">
-    <%= form.label :photo %>
-    <%= form.file_field :photo %>
+  <div class="mb-3">
+    <%= form.label :photo, class: "form-label" %>
+    <%= form.file_field :photo, class: "form-control" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit "Update Blog Post" %>
+  <div class="d-grid">
+    <%= form.submit "Update Blog Post", class: "btn btn-primary" %>
   </div>
 <% end %>
